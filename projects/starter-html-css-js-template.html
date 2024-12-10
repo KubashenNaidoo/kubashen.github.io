@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starter HTML, CSS, and JavaScript Template</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Starter HTML, CSS, and JavaScript Template</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/projects">Projects</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-details">
+            <h2>Project Overview</h2>
+            <p id="description">Loading project description...</p>
+
+            <h3>Technologies Used:</h3>
+            <ul id="tech-stack">
+                <!-- Tech stack will be inserted here -->
+            </ul>
+
+            <h3>Features:</h3>
+            <ul id="features">
+                <!-- Features will be inserted here -->
+            </ul>
+
+            <h3>Challenges Faced:</h3>
+            <ul id="challenges">
+                <!-- Challenges will be inserted here -->
+            </ul>
+
+            <h3>Enhancements:</h3>
+            <ul id="enhancements">
+                <!-- Enhancements will be inserted here -->
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Kubashen Naidoo. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Fetch the project info from the project-info.json
+        fetch('../project-info.json')
+            .then(response => response.json())
+            .then(data => {
+                // Insert the description, tech stack, features, challenges, and enhancements
+                document.getElementById('description').textContent = data.description;
+
+                // Insert tech stack
+                const techStackList = document.getElementById('tech-stack');
+                data.tech_stack.forEach(tech => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = tech;
+                    techStackList.appendChild(listItem);
+                });
+
+                // Insert features
+                const featuresList = document.getElementById('features');
+                data.features.forEach(feature => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = feature;
+                    featuresList.appendChild(listItem);
+                });
+
+                // Insert challenges
+                const challengesList = document.getElementById('challenges');
+                data.challenges.forEach(challenge => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = challenge;
+                    challengesList.appendChild(listItem);
+                });
+
+                // Insert enhancements
+                const enhancementsList = document.getElementById('enhancements');
+                data.enhancements.forEach(enhancement => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = enhancement;
+                    enhancementsList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error loading project info:', error));
+    </script>
+</body>
+</html>
