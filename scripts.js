@@ -47,28 +47,24 @@ const repoNameMapping = {
     'Terraform-Starter': 'Terraform Basics'
 };
 
-// Fetch repositories
 fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
+        console.log(data); // Check the structure of the fetched data
         const repoList = document.getElementById('project-list');
-        
-        // Filter out the repositories that are in the excludedRepos list
         const filteredRepos = data.filter(repo => !excludedRepos.includes(repo.name));
         
-        // Loop through each remaining repo and create a list item
         filteredRepos.forEach(repo => {
             const repoItem = document.createElement('li');
             const repoLink = document.createElement('a');
             
-            // Get the custom name from the mapping, or fallback to the original repo name
-            const displayName = repoNameMapping[repo.name] || repo.name;  
+            const displayName = repoNameMapping[repo.name] || repo.name;
+            console.log(`Repo name: ${repo.name}, Display name: ${displayName}`);  // Debugging the names
             
-            repoLink.href = repo.html_url;  // Link to the repository
-            repoLink.textContent = displayName;  // Custom or default repo name
+            repoLink.href = repo.html_url;
+            repoLink.textContent = displayName;
             repoItem.appendChild(repoLink);
             
-            // Add description as a paragraph under each repo link
             const repoDescription = document.createElement('p');
             repoDescription.textContent = repo.description || 'No description available';
             repoItem.appendChild(repoDescription);
@@ -77,3 +73,4 @@ fetch(apiUrl)
         });
     })
     .catch(error => console.error('Error fetching repositories:', error));
+
