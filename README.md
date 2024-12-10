@@ -2,7 +2,7 @@
 
 Welcome to my portfolio website! 🎉 This is where I showcase my skills, projects, and experience as a **Data Engineer**. 
 
-You can view the live website here: [kubashen.github.io](https://kubashen.github.io)
+You can view the live website here: [kubashen.github.io](https://kubashennaidoo.github.io)
 
 ---
 
