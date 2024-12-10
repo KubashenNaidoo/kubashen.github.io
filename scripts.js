@@ -10,6 +10,17 @@
     'DS_1'                       // Another repo to exclude
 ];
 
+
+const repoNameMapping = {
+    'Ansible-Starter': 'Ansible Basics',
+    'Data-Processing-with-Spark': 'Data Processing with Apache Spark',
+    'Data-Visualisation-Time-Series': 'Time Series Data Visualisation',
+    'Starter-HTML-CSS-JS': 'HTML, CSS, and JavaScript Starter',
+    'Terraform-Starter': 'Terraform Basics'
+};
+
+
+// Fetch repositories
 fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
@@ -22,8 +33,10 @@ fetch(apiUrl)
         filteredRepos.forEach(repo => {
             const repoItem = document.createElement('li');
             const repoLink = document.createElement('a');
+            const displayName = repoNameMapping[repo.name] || repo.name;  // Use custom name or default to repo name
+            
             repoLink.href = repo.html_url;  // Link to the repository
-            repoLink.textContent = repo.name;  // Repo name
+            repoLink.textContent = displayName;  // Custom or default repo name
             repoItem.appendChild(repoLink);
             repoList.appendChild(repoItem);
         });
